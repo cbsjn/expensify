@@ -16,8 +16,6 @@ const expenseOne = store.dispatch(addExpense({ description: 'water bill', amount
 const expenseTwo = store.dispatch(addExpense({ description: 'gas bill', createdAt: 1000 }));
 const expenseThree = store.dispatch(addExpense({ description: 'rent', amount: 10500, createdAt: 5000 }));
 
-console.log(getVisibleExpenses(store.getState().expenses, store.getState().filters));
-
 const jsx = (
     <Provider store={store}>
         <AppRouter />
