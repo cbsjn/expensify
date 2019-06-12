@@ -1,4 +1,5 @@
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env) => {
   const isProduction = env === 'production';
@@ -9,6 +10,11 @@ module.exports = (env) => {
       path: path.join(__dirname, 'public'),
       filename: 'bundle.js'
     },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: 'styles.css'
+      }),
+    ],
     module: {
       rules: [{
         loader: 'babel-loader',
@@ -17,13 +23,28 @@ module.exports = (env) => {
       }, {
         test: /\.s?css$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              // you can specify a publicPath here
+              // by default it uses publicPath in webpackOptions.output
+              hmr: process.env.NODE_ENV === 'development',
+            },
+          }, {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true
+            }
+          }, {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }
         ]
       }]
     },
-    devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
+    devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
       contentBase: path.join(__dirname, 'public'),
       historyApiFallback: true
