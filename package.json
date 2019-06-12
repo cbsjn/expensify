@@ -6,7 +6,8 @@
   "license": "UNLICENSED",
   "scripts": {
     "serve": "live-server public/",
-    "build": "webpack",
+    "build:dev": "webpack",
+    "build:prod": "webpack -p",
     "dev-server": "webpack-dev-server",
     "test": "jest --config=jest.config.json --watchAll --coverage"
   },
@@ -28,7 +29,7 @@
     "enzyme-to-json": "^3.3.5",
     "jest": "^24.8.0",
     "live-server": "^1.2.0",
-    "moment": "2.18.1",
+    "moment": "^2.24.0",
     "node-sass": "^4.12.0",
     "normalize.css": "7.0.0",
     "raf": "^3.4.1",
@@ -45,7 +46,10 @@
     "style-loader": "0.18.2",
     "uuid": "3.1.0",
     "validator": "8.0.0",
-    "webpack": "3.1.0",
-    "webpack-dev-server": "2.5.1"
+    "webpack": "^4.33.0",
+    "webpack-dev-server": "^3.7.1"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.4"
   }
 }
